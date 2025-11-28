@@ -1,0 +1,164 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?
+  role          String    @default("USER") // "USER" veya "ADMIN"
+  emailVerified DateTime? // E-posta doğrulama tarihi
+  image         String?   // Sosyal giriş için profil fotoğrafı
+  phone         String?   // Telefon numarası
+  // B2B Firma Bilgileri
+  companyName   String?   // Ticari Ünvan / Firma Adı
+  taxId         String?   // Vergi Kimlik Numarası (VKN) - 10 haneli
+  taxOffice     String?   // Vergi Dairesi
+  companyAddress String?  // Firma Adresi
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cartItems CartItem[] // Kullanıcının sepeti
+  addresses Address[] // Kullanıcının adresleri
+  orders    Order[] // Kullanıcının siparişleri
+  emailVerificationTokens EmailVerificationToken[] // E-posta doğrulama token'ları
+  passwordResetTokens PasswordResetToken[] // Şifre sıfırlama token'ları
+}
+
+// E-posta Doğrulama Token'ı
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+
+// Şifre Sıfırlama Token'ı
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+model Category {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  slug      String    @unique
+  imageUrl  String?   // Kategori görseli
+  createdAt DateTime  @default(now())
+  parentId  String?   // Alt kategorinin ana kategori ID'si
+  parent    Category? @relation("SubCategories", fields: [parentId], references: [id])
+  subCategories Category[] @relation("SubCategories")
+  products  Product[] // Ürünler
+}
+
+    // --- Ürün Modeli ---
+    model Product {
+      id          String   @id @default(cuid())
+      name        String
+      description String?
+      price       Float
+      stock       Int      @default(0) // Stok adedi
+      thumbnailUrl String? // Küçük görsel (330x330) - Ana sayfa ve listeler için
+      imageUrl    String?  // Büyük görsel (1650x1650) - Detay sayfası için
+      technicalDetails String?
+      createdAt   DateTime @default(now())
+      updatedAt   DateTime @updatedAt
+      categoryId String
+      category   Category @relation(fields: [categoryId], references: [id])
+      cartItems   CartItem[] // Sepetteki ürünler
+      orderItems  OrderItem[] // Siparişlerdeki ürünler
+    }
+
+// --- Sepet Modeli ---
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, productId]) // Bir kullanıcı aynı üründen sadece bir kez ekleyebilir (quantity ile miktarı artırırız)
+  @@index([userId]) // Kullanıcıya göre hızlı sorgulama için
+}
+
+// --- Adres Modeli ---
+model Address {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // "billing" veya "delivery"
+  title       String   // "Ev", "İş", vb.
+  fullName    String
+  phone       String
+  address     String   // Adres satırı
+  city        String
+  district    String?  // İlçe
+  postalCode  String?
+  isDefault   Boolean  @default(false) // Varsayılan adres mi?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shippingOrders    Order[] @relation("ShippingAddress") // Bu adres teslimat adresi olarak kullanılan siparişler
+  billingOrders     Order[] @relation("BillingAddress") // Bu adres fatura adresi olarak kullanılan siparişler
+
+  @@index([userId]) // Kullanıcıya göre hızlı sorgulama için
+}
+
+// --- Sipariş Modeli ---
+model Order {
+  id                String      @id @default(cuid())
+  userId            String
+  orderNumber       String      @unique // Benzersiz sipariş numarası
+  status            String      @default("pending") // pending, processing, shipped, delivered, cancelled
+  totalPrice        Float
+  shippingAddressId String      // Teslimat adresi
+  billingAddressId  String?     // Fatura adresi (opsiyonel, teslimat adresi kullanılabilir)
+  notes             String?     // Kullanıcı notları
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+
+  user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shippingAddress   Address @relation("ShippingAddress", fields: [shippingAddressId], references: [id])
+  billingAddress    Address? @relation("BillingAddress", fields: [billingAddressId], references: [id])
+  orderItems        OrderItem[] // Siparişteki ürünler
+
+  @@index([userId]) // Kullanıcıya göre hızlı sorgulama için
+  @@index([orderNumber]) // Sipariş numarasına göre hızlı sorgulama için
+}
+
+// --- Sipariş Ürünleri Modeli ---
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String
+  productId String
+  quantity  Int
+  price     Float    // Sipariş verildiğindeki fiyat (ürün fiyatı değişebilir)
+  createdAt DateTime @default(now())
+
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([orderId]) // Siparişe göre hızlı sorgulama için
+}
