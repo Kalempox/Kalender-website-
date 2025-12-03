@@ -35,7 +35,7 @@ export default function KullanimSartlariPage() {
         <CardContent className="space-y-4 text-muted-foreground">
           <p>
             Bu kullanım şartları, Kalender Toptan web sitesini
-            (www.kalender.com) kullanırken geçerlidir. Web sitemizi kullanarak,
+            (www.kalenderltd.com) kullanırken geçerlidir. Web sitemizi kullanarak,
             bu şartları kabul etmiş sayılırsınız.
           </p>
           <p>
@@ -228,10 +228,10 @@ export default function KullanimSartlariPage() {
             <p>
               <strong>E-posta:</strong>{" "}
               <a
-                href="mailto:info@kalender.com"
+                href="mailto:info@kalenderltd.com"
                 className="text-primary hover:underline"
               >
-                info@kalender.com
+                info@kalenderltd.com
               </a>
             </p>
             <p>

@@ -46,7 +46,7 @@ export async function generateMetadata({
   const { productId } = await params;
   const product = await getProduct(productId);
 
-  const baseUrl = process.env.NEXTAUTH_URL || "https://kalender.com";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://www.kalenderltd.com";
   const productUrl = `${baseUrl}/product/${productId}`;
   const productImage = product.imageUrl
     ? `${baseUrl}${product.imageUrl}`
@@ -57,7 +57,7 @@ export async function generateMetadata({
   const title = `${product.name} | Toptan ${product.category.name} | Kalender Toptan`;
   const description =
     product.description ||
-    `${product.name} - ${product.category.name} kategorisinde kaliteli toptan ürün. En uygun fiyatlarla kalender.com'da!`;
+    `${product.name} - ${product.category.name} kategorisinde kaliteli toptan ürün. En uygun fiyatlarla kalenderltd.com'da!`;
 
   return {
     title,
@@ -68,7 +68,7 @@ export async function generateMetadata({
       "toptan",
       "toptan gıda",
       "toptan alışveriş",
-      "gaziantep toptan",
+      "toptan satış",
       "kalender",
       "toptan satış",
       "toptan alım satım",
@@ -124,7 +124,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     product.id
   );
 
-  const baseUrl = process.env.NEXTAUTH_URL || "https://kalender.com";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://www.kalenderltd.com";
   const productUrl = `${baseUrl}/product/${productId}`;
   const productImage = product.imageUrl
     ? `${baseUrl}${product.imageUrl}`

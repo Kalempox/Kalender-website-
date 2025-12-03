@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { db } from "@/lib/db";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXTAUTH_URL || "https://kalender.com";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://www.kalenderltd.com";
 
   // Statik sayfalar
   const staticPages: MetadataRoute.Sitemap = [

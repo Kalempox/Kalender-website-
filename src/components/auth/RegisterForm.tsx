@@ -280,7 +280,7 @@ export function RegisterForm() {
                   <FormControl>
                     <Input
                       type="email"
-                      placeholder="ornek@kalender.com"
+                      placeholder="ornek@kalenderltd.com"
                       {...field}
                       disabled={isLoading}
                     />

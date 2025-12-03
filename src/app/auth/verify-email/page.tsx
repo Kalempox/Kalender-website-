@@ -132,7 +132,7 @@ function VerifyEmailContent() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="ornek@kalender.com"
+              placeholder="ornek@kalenderltd.com"
               disabled={resending}
             />
           </div>

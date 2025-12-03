@@ -198,10 +198,10 @@ export default function GizlilikPolitikasiPage() {
           <p className="mt-4">
             Bu haklarınızı kullanmak için{" "}
             <a
-              href="mailto:info@kalender.com"
+              href="mailto:info@kalenderltd.com"
               className="text-primary hover:underline"
             >
-              info@kalender.com
+              info@kalenderltd.com
             </a>{" "}
             adresine e-posta gönderebilir veya{" "}
             <a href="/iletisim" className="text-primary hover:underline">
@@ -225,10 +225,10 @@ export default function GizlilikPolitikasiPage() {
             <p>
               <strong>E-posta:</strong>{" "}
               <a
-                href="mailto:info@kalender.com"
+                href="mailto:info@kalenderltd.com"
                 className="text-primary hover:underline"
               >
-                info@kalender.com
+                info@kalenderltd.com
               </a>
             </p>
             <p>

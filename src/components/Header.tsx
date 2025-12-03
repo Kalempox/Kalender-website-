@@ -155,7 +155,7 @@ export function Header() {
   const announcementMessages = [
     " 1962'den Beri Türkiye'nin Toptan Adresi - Kalender ",
     " Profesyonel Hizmet, Uygun Fiyatlar",
-    " Gaziantep, Malatya, Kahramanmaraş, Adıyaman, Şanlıurfa, Elazığ Bölgelerine Teslimat",
+    " Türkiye Genelinde Teslimat",
     " Minimum Sipariş: 5.000 TL | 10.000 TL Üzeri Ücretsiz Kargo",
     " Detaylı Bilgi ve Pazarlık İçin İletişime Geçin",
   ];

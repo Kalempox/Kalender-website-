@@ -11,8 +11,8 @@ export function Footer() {
           <div className="col-span-2 lg:col-span-2 space-y-4">
             <h3 className="text-2xl font-bold text-white">Kalender Toptan</h3>
             <p className="text-sm max-w-md">
-              1962&apos;den beri güvenilir toptan adresiniz. Gaziantep,
-              Kahramanmaraş, Adıyaman ve Malatya illerine hizmet vermekteyiz.
+              1962&apos;den beri güvenilir toptan adresiniz. Türkiye genelinde
+              hizmet vermekteyiz.
             </p>
           </div>
 
@@ -81,9 +81,9 @@ export function Footer() {
               <p className="flex items-start gap-2">
                 <span className="text-gray-400">📍</span>
                 <span>
-                  Sanayi Mahallesi,60418 nolu sokak No:91
+                  Örnek Mahallesi, Örnek Sokak No: 123
                   <br />
-                  Şehitkamil / Gaziantep
+                  Örnek İlçe / Örnek Şehir
                 </span>
               </p>
               <p className="flex items-center gap-2">
@@ -92,16 +92,16 @@ export function Footer() {
                   href="tel:+905551234567"
                   className="hover:text-white hover:underline"
                 >
-                  +90 532 424 95 98
+                  +90 555 123 45 67
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <span className="text-gray-400">✉️</span>
                 <a
-                  href="mailto:info@kalender.com"
+                  href="mailto:info@kalenderltd.com"
                   className="hover:text-white hover:underline"
                 >
-                  kalendercafer@hotmail.com
+                  info@kalenderltd.com
                 </a>
               </p>
             </address>

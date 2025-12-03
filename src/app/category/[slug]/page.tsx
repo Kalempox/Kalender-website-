@@ -46,15 +46,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = await getCategoryData(slug);
 
-  const baseUrl = process.env.NEXTAUTH_URL || "https://kalender.com";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://www.kalenderltd.com";
   const categoryUrl = `${baseUrl}/category/${slug}`;
 
   const categoryName = category.parent
     ? `${category.parent.name} - ${category.name}`
     : category.name;
 
-  const title = `Toptan ${categoryName} | Kalender Toptan - Gaziantep`;
-  const description = `${categoryName} kategorisinde kaliteli toptan ürünler. En uygun fiyatlarla toptan alışveriş yapın. Gaziantep, Kahramanmaraş, Adıyaman ve Malatya bölgelerine teslimat.`;
+  const title = `Toptan ${categoryName} | Kalender Toptan`;
+  const description = `${categoryName} kategorisinde kaliteli toptan ürünler. En uygun fiyatlarla toptan alışveriş yapın. Türkiye genelinde teslimat.`;
 
   return {
     title,
@@ -64,7 +64,7 @@ export async function generateMetadata({
       "toptan",
       "toptan gıda",
       "toptan alışveriş",
-      "gaziantep toptan",
+      "toptan satış",
       "kalender",
       "toptan satış",
       "toptan alım satım",
@@ -152,7 +152,7 @@ export default async function CategoryPage({
     ? category.subCategories
     : [];
 
-  const baseUrl = process.env.NEXTAUTH_URL || "https://kalender.com";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://www.kalenderltd.com";
   const categoryUrl = `${baseUrl}/category/${slug}`;
 
   const breadcrumbItems = [

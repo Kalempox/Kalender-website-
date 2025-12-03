@@ -43,7 +43,7 @@ export async function sendVerificationEmail(
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'noreply@kalender.com',
+      from: 'noreply@kalenderltd.com',
       to: email,
       subject: 'E-postanızı Doğrulayın',
       html: `
@@ -73,7 +73,7 @@ export async function sendPasswordResetEmail(
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'noreply@kalender.com',
+      from: 'noreply@kalenderltd.com',
       to: email,
       subject: 'Şifrenizi Sıfırlayın',
       html: `
@@ -204,7 +204,7 @@ export async function sendOrderConfirmationEmail(
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'siparis@kalender.com',
+      from: 'siparis@kalenderltd.com',
       to: email,
       subject: `Siparişiniz Alındı - ${order.orderNumber}`,
       html: emailHtml,
@@ -215,7 +215,7 @@ export async function sendOrderConfirmationEmail(
 
 // Yeni Sipariş Bildirimi (Admin'e)
 export async function sendAdminOrderNotification(order: OrderData): Promise<void> {
-  const adminEmail = process.env.ADMIN_EMAIL || "admin@kalender.com";
+  const adminEmail = process.env.ADMIN_EMAIL || "admin@kalenderltd.com";
   const orderDate = new Date(order.createdAt).toLocaleDateString("tr-TR", {
     year: "numeric",
     month: "long",
@@ -312,7 +312,7 @@ export async function sendAdminOrderNotification(order: OrderData): Promise<void
   if (process.env.RESEND_API_KEY) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'siparis@kalender.com',
+      from: 'siparis@kalenderltd.com',
       to: adminEmail,
       subject: `⚠️ Yeni Sipariş - ${order.orderNumber}`,
       html: adminEmailHtml,

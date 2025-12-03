@@ -102,9 +102,9 @@ export default function IletisimPage() {
                 <div>
                   <h3 className="font-semibold mb-1">Adres</h3>
                   <p className="text-sm text-muted-foreground">
-                    Sanayi Mahallesi,60418 nolu sokak No:91
+                    Örnek Mahallesi, Örnek Sokak No: 123
                     <br />
-                    Şehitkamil / Gaziantep
+                    Örnek İlçe / Örnek Şehir
                     <br />
                     Türkiye
                   </p>
@@ -120,7 +120,7 @@ export default function IletisimPage() {
                       href="tel:+905551234567"
                       className="hover:text-primary hover:underline"
                     >
-                      +90 532 424 95 98
+                      +90 555 123 45 67
                     </a>
                   </p>
                 </div>
@@ -132,10 +132,10 @@ export default function IletisimPage() {
                   <h3 className="font-semibold mb-1">E-posta</h3>
                   <p className="text-sm text-muted-foreground">
                     <a
-                      href="mailto:info@kalender.com"
+                      href="mailto:info@kalenderltd.com"
                       className="hover:text-primary hover:underline"
                     >
-                      kalendercafer@hotmail.com
+                      info@kalenderltd.com
                     </a>
                   </p>
                 </div>
@@ -155,34 +155,19 @@ export default function IletisimPage() {
             </CardContent>
           </Card>
 
-          {/* Harita */}
+          {/* Konum Bilgisi */}
           <Card>
             <CardHeader>
               <CardTitle>Konumumuz</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="w-full h-64 rounded-lg overflow-hidden border">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.1234567890123!2d37.44093!3d37.08415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDA1JzAyLjkiTiAzN8KwMjYnMjcuNCJF!5e0!3m2!1str!2str!4v1234567890123!5m2!1str!2str"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full"
-                />
+              <div className="w-full h-64 rounded-lg overflow-hidden border bg-gray-100 flex items-center justify-center">
+                <p className="text-muted-foreground text-center p-8 text-sm">
+                  Harita bilgisi örnek amaçlıdır.
+                  <br />
+                  Gerçek konum bilgisi gösterilmemektedir.
+                </p>
               </div>
-              <p className="text-xs text-muted-foreground mt-2">
-                <a
-                  href="https://www.google.com/maps/place/37°05'02.9%22N+37°26'27.4%22E/@37.0840829,37.4407376,19.25z/data=!4m4!3m3!8m2!3d37.08415!4d37.44093?entry=ttu&g_ep=EgoyMDI1MTAyOS4yIKXMDSoASAFQAw%3D%3D"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  Haritada Aç
-                </a>
-              </p>
             </CardContent>
           </Card>
         </div>
